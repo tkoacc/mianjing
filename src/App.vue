@@ -1,36 +1,25 @@
 <template>
   <div>
     <h1>Home</h1>
-    <van-button class="btn" type="primary">主要按钮</van-button>
-    <van-button type="info">信息按钮</van-button>
-    <van-button type="default">默认按钮</van-button>
-    <van-button type="warning">警告按钮</van-button>
-    <van-button type="danger">危险按钮</van-button>
   </div>
 </template>
 
 <script>
-import { setToken, getToken, removeToken } from '@/utils/storage.js'
-
-import request from '@/utils/request.js'
-
-request
-  .post('/h5/user/login', {
-    username: 'wuhan',
-    password: '123456'
-  })
+import { UserLogin } from '@/api/user.js'
+UserLogin({
+  username: 'wuhan',
+  password: '123456'
+})
   .then((res) => {
     console.log(res)
   })
   .catch((error) => {
-    console.error('Error during login:', error)
+    console.error('Error occurred:', error)
+    // 如果可用，打印服务器返回的错误信息
+    if (error.response && error.response.data) {
+      console.error('Server response:', error.response.data)
+    }
   })
-
-setToken('123')
-const res = getToken()
-console.log(res)
-removeToken()
-
 export default {}
 </script>
 
