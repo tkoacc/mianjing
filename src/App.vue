@@ -11,10 +11,26 @@
 
 <script>
 import { setToken, getToken, removeToken } from '@/utils/storage.js'
+
+import request from '@/utils/request.js'
+
+request
+  .post('/h5/user/login', {
+    username: 'wuhan',
+    password: '123456'
+  })
+  .then((res) => {
+    console.log(res)
+  })
+  .catch((error) => {
+    console.error('Error during login:', error)
+  })
+
 setToken('123')
 const res = getToken()
 console.log(res)
 removeToken()
+
 export default {}
 </script>
 
