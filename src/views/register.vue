@@ -54,7 +54,8 @@ export default {
       // 发送Ajax请求
       const res = await UserRegister(values)
       console.log(res)
-      // 跳转登录页
+      // 提示+跳转登录页
+      this.$toast.success('注册成功')
       this.$router.push('/login')
     }
   }
