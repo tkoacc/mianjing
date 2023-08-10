@@ -3,16 +3,27 @@
     <!-- 顶部栏 -->
     <van-nav-bar title="面经注册" />
     <!-- 表单 -->
-    <van-form>
+    <van-form @submit="onSubmit">
       <van-field
-        name="用户名"
+        v-model="username"
+        name="username"
         label="用户名："
         placeholder="请输入用户名"
+        :rules="[
+          { required, message: '请填写用户名' },
+          { pattern, message: '用户名6-15位' }
+        ]"
       ></van-field>
       <van-field
-        name="密码"
+        type="password"
+        v-model="password"
+        name="password"
         label="密码："
         placeholder="请输入密码"
+        :rules="[
+          { required, message: '请填写密码' },
+          { pattern, message: '密码6-15位' }
+        ]"
       ></van-field>
       <div style="margin: 16px">
         <van-button round block type="primary" native-type="submit">
@@ -21,17 +32,32 @@
       </div>
     </van-form>
     <!-- 跳转按钮 -->
-    <a class="link" href="#">直接登录</a>
+    <a class="link" href="#/login">直接登录</a>
   </div>
 </template>
 
 <script>
+import { UserRegister } from '@/api/user.js'
 export default {
   name: 'register-page',
   data () {
-    return {}
+    return {
+      username: '',
+      password: '',
+      required: true,
+      pattern: /^\w{6,15}$/
+    }
   },
-  methods: {}
+  methods: {
+    async onSubmit (values) {
+      console.log('submit', values)
+      // 发送Ajax请求
+      const res = await UserRegister(values)
+      console.log(res)
+      // 跳转登录页
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
 

@@ -10,6 +10,6 @@ export const UserLogin = ({ username, password }) => {
 }
 
 // 注册
-export const UserRegister = obj => {
-  return request.post('/h5/user/register', obj)
+export const UserRegister = ({ username, password }) => {
+  return request.post('/h5/user/register', { username, password })
 }
