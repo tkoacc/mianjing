@@ -1,7 +1,5 @@
 <template>
-  <div class="login-page">
-    登录页
-  </div>
+  <div class="login-page">登录页</div>
 </template>
 
 <script>
@@ -10,9 +8,7 @@ export default {
   data () {
     return {}
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 

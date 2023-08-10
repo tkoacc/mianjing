@@ -1,20 +1,14 @@
 <template>
-  <div class="like-page">
-    喜欢
-  </div>
+  <div class="like-page">喜欢</div>
 </template>
 
 <script>
 export default {
   name: 'like-page',
   data () {
-    return {
-
-    }
+    return {}
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 

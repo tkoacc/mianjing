@@ -1,23 +1,16 @@
 <template>
-  <div class="detail-page">
-    文章详情页
-  </div>
+  <div class="detail-page">文章详情页</div>
 </template>
 
 <script>
 export default {
   name: 'detail-page',
   data () {
-    return {
-
-    }
+    return {}
   },
-  async created () {
+  async created () {},
 
-  },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 
@@ -58,7 +51,7 @@ export default {
       box-shadow: 2px 2px 10px #ccc;
       font-size: 18px;
       &.active {
-        background: #FEC635;
+        background: #fec635;
         color: #fff;
       }
     }

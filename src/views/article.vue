@@ -1,20 +1,14 @@
 <template>
-  <div class="article-page">
-    面经页面
-  </div>
+  <div class="article-page">面经页面</div>
 </template>
 
 <script>
 export default {
   name: 'article-page',
   data () {
-    return {
-
-    }
+    return {}
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 

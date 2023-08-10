@@ -1,6 +1,9 @@
 <template>
   <div class="register-page">
     注册页
+    <!-- 顶部栏 -->
+    <!-- 表单 -->
+    <!-- 跳转按钮 -->
   </div>
 </template>
 
@@ -8,13 +11,9 @@
 export default {
   name: 'register-page',
   data () {
-    return {
-
-    }
+    return {}
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 
