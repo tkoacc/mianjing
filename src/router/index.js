@@ -11,6 +11,8 @@ import collect from '@/views/collect.vue'
 import like from '@/views/like.vue'
 import user from '@/views/user.vue'
 
+import { getToken } from '@/utils/storage'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -60,6 +62,18 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+// 路由导航守卫
+const arr = ['/login', '/register']
+router.beforeEach((to, from, next) => {
+  if (getToken() || arr.includes(to.path)) {
+    next()
+  } else {
+    next('/login')
+  }
+  console.log(to)
+  console.log(from)
 })
 
 export default router

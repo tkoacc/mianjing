@@ -38,6 +38,7 @@
 
 <script>
 import { UserLogin } from '@/api/user.js'
+import { setToken } from '@/utils/storage.js'
 export default {
   name: 'login-page',
   data () {
@@ -54,6 +55,7 @@ export default {
       // 发送Ajax请求
       const res = await UserLogin(values)
       console.log(res)
+      setToken(res.data.data.token)
       // 提示+跳转
       this.$toast.success('登录成功')
       this.$router.push('/')
