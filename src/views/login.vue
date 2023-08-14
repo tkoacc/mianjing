@@ -51,11 +51,9 @@ export default {
   },
   methods: {
     async onSubmit (values) {
-      console.log('submit', values)
       // 发送Ajax请求
-      const res = await UserLogin(values)
-      console.log(res)
-      setToken(res.data.data.token)
+      const data = await UserLogin(values)
+      setToken(data.data.token)
       // 提示+跳转
       this.$toast.success('登录成功')
       this.$router.push('/')

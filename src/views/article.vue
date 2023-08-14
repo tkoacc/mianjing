@@ -10,12 +10,30 @@
 </template>
 
 <script>
+// 导入接口
+import { getArticleList } from '@/api/article.js'
 export default {
   name: 'article-page',
   data () {
-    return {}
+    return {
+      // 当前页
+      current: 1,
+      // 每页数量
+      pageSize: 10,
+      // 排序规则
+      sorter: 'weight_desc'
+    }
   },
-  methods: {}
+  methods: {},
+  async created () {
+    // 发送Ajax
+    const data = await getArticleList({
+      current: this.current,
+      pageSize: this.pageSize,
+      sorter: this.sorter
+    })
+    console.log(data)
+  }
 }
 </script>
 

@@ -50,10 +50,9 @@ export default {
   },
   methods: {
     async onSubmit (values) {
-      console.log('submit', values)
       // 发送Ajax请求
-      const res = await UserRegister(values)
-      console.log(res)
+      const data = await UserRegister(values)
+      console.log(data)
       // 提示+跳转登录页
       this.$toast.success('注册成功')
       this.$router.push('/login')

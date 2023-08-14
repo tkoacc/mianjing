@@ -28,6 +28,7 @@ module.exports = {
     'vue'
   ],
   rules: {
-    'arrow-parens': ['error', 'as-needed']
+    'arrow-parens': ['error', 'as-needed'],
+    'no-debugger': 'off'
   }
 }

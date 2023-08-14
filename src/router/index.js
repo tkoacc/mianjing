@@ -72,8 +72,6 @@ router.beforeEach((to, from, next) => {
   } else {
     next('/login')
   }
-  console.log(to)
-  console.log(from)
 })
 
 export default router
