@@ -5,7 +5,19 @@
       <a href="javascript:;">最新</a>
       <div class="logo"><img src="@/assets/logo.png" alt="" /></div>
     </nav>
-    <ArticleItem></ArticleItem>
+    <!-- 长列表：上拉加载更多 -->
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+    >
+      <ArticleItem
+        v-for="item in list"
+        :key="item.id"
+        :item="item"
+      ></ArticleItem>
+    </van-list>
   </div>
 </template>
 
@@ -21,18 +33,35 @@ export default {
       // 每页数量
       pageSize: 10,
       // 排序规则
-      sorter: 'weight_desc'
+      sorter: 'weight_desc',
+      // 文章列表
+      list: [],
+      // 加载更多动画
+      loading: false,
+      // 是否全部加载完毕
+      finished: false
     }
   },
-  methods: {},
-  async created () {
-    // 发送Ajax
-    const data = await getArticleList({
-      current: this.current,
-      pageSize: this.pageSize,
-      sorter: this.sorter
-    })
-    console.log(data)
+  methods: {
+    // 封装获取文章列表函数
+    async getList () {
+      // 发送Ajax
+      const data = await getArticleList({
+        current: this.current,
+        pageSize: this.pageSize,
+        sorter: this.sorter
+      })
+      console.log(data)
+      // 绑定到data
+      this.list = data.data.rows
+    },
+    // 加载更多
+    onLoad () {
+      // 请求列表
+      this.getList()
+      // 设置loading为false，关闭动画，否则底部一直转圈
+      this.loading = false
+    }
   }
 }
 </script>
