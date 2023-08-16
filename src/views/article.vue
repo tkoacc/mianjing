@@ -43,24 +43,25 @@ export default {
     }
   },
   methods: {
-    // 封装获取文章列表函数
-    async getList () {
-      // 发送Ajax
+    // 加载更多
+    async onLoad () {
+      // 请求列表
       const data = await getArticleList({
         current: this.current,
         pageSize: this.pageSize,
         sorter: this.sorter
       })
       console.log(data)
-      // 绑定到data
-      this.list = data.data.rows
-    },
-    // 加载更多
-    onLoad () {
-      // 请求列表
-      this.getList()
+      // 加载更多，添加到数组后面
+      this.list.push(...data.data.rows)
+      // 页码自增
+      this.current++
       // 设置loading为false，关闭动画，否则底部一直转圈
       this.loading = false
+      // 判断是否全部加载完毕,如果加载完毕，设置finished为true
+      if (data.data.rows.length === 0) {
+        this.finished = true
+      }
     }
   }
 }
