@@ -29,7 +29,7 @@ const routes = [
     component: login
   },
   {
-    path: '/detail',
+    path: '/detail/:id',
     component: detail
   },
   {

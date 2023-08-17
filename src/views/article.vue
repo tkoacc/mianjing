@@ -61,7 +61,6 @@ export default {
         pageSize: this.pageSize,
         sorter: this.sorter
       })
-      console.log(data)
       // 加载更多，添加到数组后面
       this.list.push(...data.data.rows)
       // 页码自增
@@ -75,7 +74,6 @@ export default {
     },
     hChange (sorter) {
       // 点击切换获取sorter
-      console.log(sorter)
       // 重置所有的数据
       this.sorter = sorter
       this.current = 1

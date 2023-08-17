@@ -8,7 +8,9 @@ export default {
   data () {
     return {}
   },
-  async created () {},
+  async created () {
+    console.log(this.$route.params.id)
+  },
 
   methods: {}
 }
