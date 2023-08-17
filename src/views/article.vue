@@ -1,8 +1,18 @@
 <template>
   <div class="article-page">
     <nav class="my-nav van-hairline--bottom">
-      <a href="javascript:;">推荐</a>
-      <a href="javascript:;">最新</a>
+      <a
+        :class="{ active: sorter === 'weight_desc' }"
+        @click="hChange('weight_desc')"
+        href="javascript:;"
+        >推荐</a
+      >
+      <a
+        :class="{ active: sorter === null }"
+        @click="hChange(null)"
+        href="javascript:;"
+        >最新</a
+      >
       <div class="logo"><img src="@/assets/logo.png" alt="" /></div>
     </nav>
     <!-- 长列表：上拉加载更多 -->
@@ -62,6 +72,19 @@ export default {
       if (data.data.rows.length === 0) {
         this.finished = true
       }
+    },
+    hChange (sorter) {
+      // 点击切换获取sorter
+      console.log(sorter)
+      // 重置所有的数据
+      this.sorter = sorter
+      this.current = 1
+      this.list = []
+      this.finished = false
+      // loading状态是true,因为此刻正在发送请求
+      this.loading = true
+      // 发请求
+      this.onLoad()
     }
   }
 }
