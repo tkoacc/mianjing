@@ -1,18 +1,88 @@
 <template>
-  <div class="detail-page">文章详情页</div>
+  <div class="detail-page">
+    <van-nav-bar
+      fixed
+      title="面经详情"
+      left-text="返回"
+      @click-left="$router.back()"
+    />
+    <header class="header">
+      <h1>{{ article.stem }}</h1>
+      <p>
+        {{ article.createdAt }} | {{ article.views }} 浏览量 |
+        {{ article.likeCount }} 点赞数
+      </p>
+      <p>
+        <img :src="article.avatar" alt="" />
+        <span>{{ article.creator }}</span>
+      </p>
+    </header>
+    <main class="body" v-html="article.content"></main>
+    <div class="opt">
+      <van-icon
+        @click="toggleLike"
+        :class="{ active: article.likeFlag }"
+        name="like-o"
+      />
+      <van-icon
+        @click="toggleCollect"
+        :class="{ active: article.collectFlag }"
+        name="star-o"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
+// 导入接口
+import { getArticleDetail, updateCollect, updateLike } from '@/api/article.js'
 export default {
   name: 'detail-page',
   data () {
-    return {}
+    return {
+      article: {}
+    }
   },
   async created () {
-    console.log(this.$route.params.id)
+    this.getDetail()
   },
-
-  methods: {}
+  methods: {
+    // 获取文章
+    async getDetail () {
+      // 发送Ajax请求
+      const { data } = await getArticleDetail(this.$route.params.id)
+      // 绑定数据
+      this.article = data
+    },
+    // 喜欢切换
+    async toggleLike () {
+      // 发送Ajax请求
+      await updateLike(this.$route.params.id)
+      // 喜欢/不喜欢切换
+      this.article.likeFlag = !this.article.likeFlag
+      // 喜欢人数增加/减少提示信息
+      if (this.article.likeFlag) {
+        this.article.likeCount++
+        this.$toast.success('点赞成功')
+      } else {
+        this.article.likeCount--
+        this.$toast.success('取消成功')
+      }
+    },
+    // 收藏切换
+    async toggleCollect () {
+      // 发送Ajax请求
+      await updateCollect(this.$route.params.id)
+      // 收藏/不收藏切换
+      this.article.collectFlag = !this.article.collectFlag
+      // 收藏人数增加/减少提示信息
+      if (this.article.collectFlag) {
+        this.$toast.success('收藏成功')
+      } else {
+        this.$toast.success('取消成功')
+      }
+    }
+  }
 }
 </script>
 
