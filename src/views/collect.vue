@@ -30,7 +30,6 @@ export default {
       const { data } = await getArticlesCollect({
         page: this.page
       })
-      console.log(data)
       // 添加数组数据
       this.list.push(...data.rows)
       // 完成加载

@@ -57,3 +57,15 @@ export const getArticlesCollect = obj => {
     }
   })
 }
+// 获取我的喜欢
+export const getArticlesLike = obj => {
+  return request({
+    url: '/h5/interview/opt/list',
+    method: 'get',
+    params: {
+      optType: 1,
+      pageSize: 10,
+      page: obj.page
+    }
+  })
+}
