@@ -45,3 +45,15 @@ export const updateCollect = id => {
     }
   })
 }
+// 获取我的收藏
+export const getArticlesCollect = obj => {
+  return request({
+    url: '/h5/interview/opt/list',
+    method: 'get',
+    params: {
+      optType: 2,
+      pageSize: 10,
+      page: obj.page
+    }
+  })
+}
