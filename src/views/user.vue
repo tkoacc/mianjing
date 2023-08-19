@@ -14,13 +14,14 @@
       <van-cell title="推荐分享" is-link />
       <van-cell title="意见反馈" is-link />
       <van-cell title="关于我们" is-link />
-      <van-cell title="退出登录" is-link />
+      <van-cell title="退出登录" is-link @click="doLogout" />
     </van-cell-group>
   </div>
 </template>
 
 <script>
 import { getUserInfo } from '@/api/user.js'
+import { removeToken } from '@/utils/storage.js'
 export default {
   name: 'user-page',
   data () {
@@ -31,11 +32,26 @@ export default {
   async created () {
     // 发送Ajax请求
     const { data } = await getUserInfo()
-    console.log(data)
     // 绑定到data
     this.userInfo = data
   },
-  methods: {}
+  methods: {
+    doLogout () {
+      // 弹出对话框
+      this.$dialog
+        .confirm({
+          title: '提示',
+          message: '是否退出登录'
+        })
+        .then(() => {
+          // 删除token
+          removeToken()
+          // 跳转到登录页
+          this.$router.push('/login')
+        })
+        .catch(() => {})
+    }
+  }
 }
 </script>
 
