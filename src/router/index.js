@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// 导入组件
-import register from '@/views/register.vue'
-import login from '@/views/login.vue'
-import detail from '@/views/detail.vue'
-import layout from '@/views/layout.vue'
-import article from '@/views/article.vue'
-import collect from '@/views/collect.vue'
-import like from '@/views/like.vue'
-import user from '@/views/user.vue'
-
 import { getToken } from '@/utils/storage'
+
+// 导入异步组件
+const register = () => import('@/views/register.vue')
+const login = () => import('@/views/login.vue')
+const detail = () => import('@/views/detail.vue')
+const layout = () => import('@/views/layout.vue')
+const article = () => import('@/views/article.vue')
+const collect = () => import('@/views/collect.vue')
+const like = () => import('@/views/like.vue')
+const user = () => import('@/views/user.vue')
 
 Vue.use(VueRouter)
 
