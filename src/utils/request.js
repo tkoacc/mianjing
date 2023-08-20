@@ -10,7 +10,7 @@ import router from '@/router'
 
 // 创建一个新的axios实例，设置基地址
 const request = axios.create({
-  baseURL: 'http://interview-api-t.itheima.net',
+  baseURL: 'https://interview-api-t.itheima.net',
   timeout: 5000
 })
 // 添加请求拦截器
