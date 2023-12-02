@@ -1,4 +1,4 @@
-# inter
+# 面经-h5端-vant-vue2
 
 ## Project setup
 ```
@@ -23,7 +23,4 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-面经
-h5端
-vant
-vue2
+
